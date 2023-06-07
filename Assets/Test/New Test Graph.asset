@@ -12,82 +12,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52cd2b4915c61a478f2aa86218e02f8, type: 3}
   m_Name: New Test Graph
   m_EditorClassIdentifier: 
-  position: {x: 274, y: 233, z: 0}
-  scale: {x: 0.65751624, y: 0.65751624, z: 1}
+  position: {x: -289, y: 424, z: 0}
+  scale: {x: 0.7561437, y: 0.7561437, z: 1}
   connections:
-  - OutNodeGUID: 188bc2fa-1f53-4466-bd5d-1d28ba3b2313
+  - OutNodeGUID: 0a81e166-161e-42f8-8eb1-4f97a4693ec4
     OutputPortName: Output
-    InNodeGUID: 457bc681-7d3b-41ee-9f77-9947a3ae9e35
+    InNodeGUID: c6eb24fb-7251-4731-8b35-1b1938d2a0c3
     InPortName: Input
-  - OutNodeGUID: 457bc681-7d3b-41ee-9f77-9947a3ae9e35
+  - OutNodeGUID: c6eb24fb-7251-4731-8b35-1b1938d2a0c3
     OutputPortName: Output
-    InNodeGUID: 5c8aed6b-589f-4eab-9f8a-32cdb02068be
+    InNodeGUID: 9c2a6fe4-4d51-4261-8833-f59a5f2ada57
     InPortName: Input
-  - OutNodeGUID: 5c8aed6b-589f-4eab-9f8a-32cdb02068be
+  - OutNodeGUID: 9c2a6fe4-4d51-4261-8833-f59a5f2ada57
     OutputPortName: Output
-    InNodeGUID: 953c42e6-7cc9-49b5-82c1-6b676788c889
+    InNodeGUID: 709094e2-1f0f-4d72-9342-8c02c1b106ba
     InPortName: Input
   groups:
-  - nodes:
-    - 188bc2fa-1f53-4466-bd5d-1d28ba3b2313
-    - 457bc681-7d3b-41ee-9f77-9947a3ae9e35
-    - 5c8aed6b-589f-4eab-9f8a-32cdb02068be
-    position:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    title: GroupA
-  _npcNodeDatas:
   - position:
       serializedVersion: 2
-      x: 625
-      y: -90
-      width: 179
-      height: 119
-    GUID: 719df56b-71d6-4489-9091-bbb81dfd0447
-    title: NpcNodeData
-    NpcName: 
-    NpcLevel: 0
+      x: 200
+      y: 200
+      width: 0
+      height: 0
+    GUID: 20a43406-266f-4603-a10e-7618651c5534
+    title: GroupData
+    nodes:
+    - 0a81e166-161e-42f8-8eb1-4f97a4693ec4
+    - c6eb24fb-7251-4731-8b35-1b1938d2a0c3
+    - 9c2a6fe4-4d51-4261-8833-f59a5f2ada57
+  _npcNodeDatas: []
   _my:
   - position:
       serializedVersion: 2
-      x: 69
-      y: -177
+      x: 1032
+      y: -294
       width: 179
       height: 119
-    GUID: 188bc2fa-1f53-4466-bd5d-1d28ba3b2313
+    GUID: 0a81e166-161e-42f8-8eb1-4f97a4693ec4
     title: MyData
     NpcName: 
     NpcLevel: 0
   - position:
       serializedVersion: 2
-      x: 536
-      y: 92
+      x: 1397
+      y: -309
       width: 179
       height: 119
-    GUID: 953c42e6-7cc9-49b5-82c1-6b676788c889
-    title: MyData
-    NpcName: 
-    NpcLevel: 61
-  - position:
-      serializedVersion: 2
-      x: 324
-      y: -158
-      width: 179
-      height: 119
-    GUID: 457bc681-7d3b-41ee-9f77-9947a3ae9e35
+    GUID: 9c2a6fe4-4d51-4261-8833-f59a5f2ada57
     title: MyData
     NpcName: 
     NpcLevel: 0
   - position:
       serializedVersion: 2
-      x: 248
-      y: 12
+      x: 1211
+      y: -153
       width: 179
       height: 119
-    GUID: 5c8aed6b-589f-4eab-9f8a-32cdb02068be
+    GUID: c6eb24fb-7251-4731-8b35-1b1938d2a0c3
+    title: MyData
+    NpcName: 
+    NpcLevel: 0
+  - position:
+      serializedVersion: 2
+      x: 1659
+      y: -385
+      width: 179
+      height: 119
+    GUID: 709094e2-1f0f-4d72-9342-8c02c1b106ba
     title: MyData
     NpcName: 
     NpcLevel: 0

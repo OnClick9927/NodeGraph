@@ -14,13 +14,13 @@ namespace NodeGraph
             title = GetType().Name;
             GUID = Guid.NewGuid().ToString();
         }
-        public static BaseNodeData DeepCopy(BaseNodeData src)
+        public virtual BaseNodeData DeepCopy()
         {
-            var type = src.GetType();
+            var type = this.GetType();
             BaseNodeData result = Activator.CreateInstance(type) as BaseNodeData;
             foreach (var field in type.GetFields())
             {
-                field.SetValue(result, field.GetValue(src));
+                field.SetValue(result, field.GetValue(this));
             }
             return result;
         }

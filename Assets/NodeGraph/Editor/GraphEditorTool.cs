@@ -185,7 +185,7 @@ namespace NodeGraph
             foreach (var item in fields)
             {
                 var innerType = item.FieldType.GetGenericArguments()[0];
-                if (innerType.IsSubclassOf(typeof(BaseNodeData)))
+                if (innerType.IsSubclassOf(typeof(BaseNodeData)) && innerType!= typeof(GroupData))
                 {
                     var list = item.GetValue(graph) as IEnumerable<BaseNodeData>;
                     nodeDatas.AddRange(list);
@@ -223,8 +223,8 @@ namespace NodeGraph
                 .Select(x => x as BaseConnection)
                 .Where(x => nodes.Contains(x.output.node) && nodes.Contains(x.input.node))
                 .ToList();
-            var datas = nodes.ConvertAll(x => BaseNodeData.DeepCopy(Node2Data(x)));
-            var groupDatas = groups.ConvertAll(x => Group2Data(x).DeepCopy());
+            var datas = nodes.ConvertAll(x => Node2Data(x).DeepCopy());
+            var groupDatas = groups.ConvertAll(x => Group2Data(x).DeepCopy() as GroupData);
             var conDatas = connectedPorts.ConvertAll(x => Connection2Data(x));
 
 
