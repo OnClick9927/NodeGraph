@@ -10,6 +10,7 @@ public class NpcNode : BaseNode<NpcNodeData>
 
     public override void OnCreated(NodeGraphView view)
     {
+        base.OnCreated(view);
         title = NodeName;
 
         var textField = new TextField("Npc Name");
@@ -46,6 +47,7 @@ public class MyNode : BaseNode<MyData>
 
     public override void OnCreated(NodeGraphView view)
     {
+        base.OnCreated(view);
         title = NodeName;
 
         var textField = new TextField("Npc Name");

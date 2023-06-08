@@ -6,6 +6,7 @@ namespace NodeGraph
     [Serializable]
     public class GroupData : BaseNodeData
     {
+        public Color color = Color.white;
         public List<string> nodes = new List<string>();
         public override BaseNodeData DeepCopy()
         {

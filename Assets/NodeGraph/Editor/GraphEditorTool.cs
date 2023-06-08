@@ -44,10 +44,7 @@ namespace NodeGraph
         }
         private static GroupData Group2Data(BaseGroup group)
         {
-            var guids = group.containedElements.Where(x => x is BaseNode)
-              .Cast<BaseNode>()
-              .Select(x => x.GUID)
-              .ToList();
+            var guids = group.containedNodes.ConvertAll(x => x.GUID);
             var data = group.data;
             data.nodes = guids;
             return data;
@@ -145,9 +142,9 @@ namespace NodeGraph
             return node;
         }
 
-        public static void CreateConnection(NodeGraphView view, List<ConnectionData> links,List<GraphElement> result)
+        public static void CreateConnection(NodeGraphView view, List<ConnectionData> links, List<GraphElement> result)
         {
-           
+
             var nodes = view.nodes;
             foreach (BaseNode node in nodes)
             {
@@ -177,15 +174,15 @@ namespace NodeGraph
         }
         public static void Load(GraphObject graph, NodeGraphView view)
         {
+
             view.viewTransform.position = graph.position;
             view.viewTransform.scale = graph.scale;
-
             List<BaseNodeData> nodeDatas = new List<BaseNodeData>();
             var fields = GetFileds(graph);
             foreach (var item in fields)
             {
                 var innerType = item.FieldType.GetGenericArguments()[0];
-                if (innerType.IsSubclassOf(typeof(BaseNodeData)) && innerType!= typeof(GroupData))
+                if (innerType.IsSubclassOf(typeof(BaseNodeData)) && innerType != typeof(GroupData))
                 {
                     var list = item.GetValue(graph) as IEnumerable<BaseNodeData>;
                     nodeDatas.AddRange(list);
@@ -198,7 +195,7 @@ namespace NodeGraph
             }
 
             //加载link
-            CreateConnection(view, graph.connections,new List<GraphElement>());
+            CreateConnection(view, graph.connections, new List<GraphElement>());
             var nodes = view.nodes;
 
             //加载组

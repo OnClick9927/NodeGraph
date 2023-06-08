@@ -43,7 +43,7 @@ namespace NodeGraph
             SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), window);
 
         }
-
+  
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
             if (evt.target is GraphView && nodeCreationRequest != null)
@@ -59,14 +59,7 @@ namespace NodeGraph
                 }, DropdownMenuAction.AlwaysEnabled);
                 evt.menu.AppendSeparator();
             }
-
-            //if (evt.target is GraphView || evt.target is Node || evt.target is Group)
-            //{
-            //    evt.menu.AppendAction("Cut", delegate
-            //    {
-            //        CutSelectionCallback();
-            //    }, (DropdownMenuAction a) => canCutSelection ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
-            //}
+        
         }
 
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
