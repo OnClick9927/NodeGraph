@@ -4,9 +4,12 @@ namespace NodeGraph
     [Serializable]
     public class ConnectionData
     {
-        public string OutNodeGUID;
-        public string OutputPortName;
-        public string InNodeGUID;
+        public string outNodeGuid;
+        public string InNodeGuid;
+
+        public string outPortType;
+        public string inPortType;
+        public string outputPortName;
         public string InPortName;
     }
 }

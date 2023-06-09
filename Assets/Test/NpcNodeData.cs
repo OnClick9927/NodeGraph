@@ -2,15 +2,13 @@
 using System;
 
 [Serializable]
-public class NpcNodeData : BaseNodeData
+public class NpcNodeData : GraphData
 {
     public string NpcName;
-    public int NpcLevel;
 }
 
 [Serializable]
-public class MyData : BaseNodeData
+public class MyData : GraphData
 {
-    public string NpcName;
     public int NpcLevel;
 }

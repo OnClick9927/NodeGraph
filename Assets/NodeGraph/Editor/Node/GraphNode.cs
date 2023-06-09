@@ -2,17 +2,38 @@
 using System;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
 
 namespace NodeGraph
 {
-
-    public abstract class BaseNode : Node
+    public abstract class GraphNode<T> : GraphNode where T : GraphData, new()
     {
-        public Action<BaseNode> onSelected;
+        public T data = new T();
+        public override string GUID => data.guid;
+        public override string NodeName => data.title;
+
+
+        protected Port GeneratePort(Direction portDir, Type type, Port.Capacity capacity = Port.Capacity.Single, Orientation orientation = Orientation.Horizontal)
+        {
+            return GraphPort.Create(orientation, portDir, capacity, type);
+        }
+
+    }
+    public abstract class GraphNode : Node
+    {
+        public List<GraphConnection> connections => view.connections
+                    .FindAll(x => x.output.node == this || x.input.node == this);
+        public Action<GraphNode> onSelected;
         public abstract string GUID { get; }
         public abstract string NodeName { get; }
         public NodeGraphView view { get; private set; }
+        public List<GraphPort> ports { get { return this.view.ports.FindAll(x => x.node == this); } }
+
+
+
+
+
+
         public virtual void OnCreated(NodeGraphView view)
         {
             this.view = view;
@@ -74,9 +95,23 @@ namespace NodeGraph
         }
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
+            if (!(evt.target is Node)) return;
+            evt.menu.AppendAction("Delete", Delete, DeleteStatus);
+
             evt.menu.AppendAction("Disconnect all", DisconnectAll, DisconnectAllStatus);
             evt.menu.AppendAction("Remove From Group", RemoveFromGroup, RemoveFromGroupStatus);
             evt.menu.AppendSeparator();
+        }
+
+        private void Delete(DropdownMenuAction obj)
+        {
+            DisconnectAll(obj);
+            view.DeleteElements(new List<GraphElement>() { this });
+        }
+
+        private DropdownMenuAction.Status DeleteStatus(DropdownMenuAction arg)
+        {
+            return DropdownMenuAction.Status.Normal;
         }
 
         private DropdownMenuAction.Status RemoveFromGroupStatus(DropdownMenuAction arg)
@@ -88,18 +123,5 @@ namespace NodeGraph
         {
             view.groups.Find(x => x.containedNodes.Contains(this)).RemoveElement(this);
         }
-    }
-    public abstract class BaseNode<T> : BaseNode where T : BaseNodeData, new()
-    {
-        public T data = new T();
-        public override string GUID => data.GUID;
-        public override string NodeName => data.title;
-
-
-        protected Port GeneratePort(Direction portDir, Type type, Port.Capacity capacity = Port.Capacity.Single)
-        {
-            return BasePort.Create(Orientation.Horizontal, portDir, capacity, type);
-        }
-
     }
 }

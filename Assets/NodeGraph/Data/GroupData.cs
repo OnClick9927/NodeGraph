@@ -4,13 +4,17 @@ using System;
 namespace NodeGraph
 {
     [Serializable]
-    public class GroupData : BaseNodeData
+    public class GroupData : GraphData
     {
         public Color color = Color.white;
         public List<string> nodes = new List<string>();
-        public override BaseNodeData DeepCopy()
+        public GroupData() : base()
         {
-            return new GroupData() { position = position, title = title, nodes = nodes };
+            title = "Group";
+        }
+        public override GraphData DeepCopy()
+        {
+            return new GroupData() { position = position, title = title, nodes = nodes, color = color };
         }
     }
 }

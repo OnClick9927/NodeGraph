@@ -7,16 +7,22 @@ using UnityEditor.Callbacks;
 using System;
 using System.Linq;
 using System.Reflection;
-using static NodeGraph.GraphObject;
+using System.Xml.Linq;
 
 namespace NodeGraph
 {
 
-    public abstract class GraphWindow<T> : GraphWindow { }
+    public abstract class GraphWindow<T> : GraphWindow where T: GraphObject
+    {
+        protected T data { get { return Obj as T; } }
+
+    }
     public interface IGraphWindow
     {
-        bool CheckCouldLink(BasePort start, BasePort end);
-        void SelectNode(BaseNode node);
+        Rect position { get; set; }
+        bool CheckCouldLink(GraphPort start, GraphPort end);
+        void SelectNode(GraphNode node);
+        void CollectNodeTypes(NodeCreationContext context);
     }
     public abstract class GraphWindow : EditorWindow, ISearchWindowProvider, IGraphWindow
     {
@@ -43,6 +49,9 @@ namespace NodeGraph
 
         private NodeGraphView _view = null;
         private GraphObject _data = null;
+
+        protected NodeGraphView view { get { return _view; } }
+        protected GraphObject Obj { get { return _data; } }
         private string _path;
         private static string path;
         public List<GraphElement> selection { get { return _view.selection.ConvertAll(x => x as GraphElement); } }
@@ -55,13 +64,11 @@ namespace NodeGraph
             _data = AssetDatabase.LoadAssetAtPath<GraphObject>(_path);
             CreateView();
             GraphEditorTool.Load(_data, _view);
-            CreateWindowView(_view);
             _view.RegisterCallback<KeyDownEvent>(KeyDownCallback);
-
-
+            AfterLoadGraph();
         }
 
-        private void KeyDownCallback(KeyDownEvent evt)
+        protected virtual void KeyDownCallback(KeyDownEvent evt)
         {
             if (evt.commandKey || evt.ctrlKey)
             {
@@ -94,7 +101,7 @@ namespace NodeGraph
         }
 
 
-        protected abstract void CreateWindowView(NodeGraphView view);
+        protected abstract void AfterLoadGraph();
         protected void SaveGraph()
         {
             GraphEditorTool.Save(_data, _view);
@@ -109,24 +116,22 @@ namespace NodeGraph
 
 
 
+        List<Type> nodeTypes;
+        void IGraphWindow.CollectNodeTypes(NodeCreationContext context)
+        {
+            nodeTypes = GraphEditorTool.NodeTypes;
+            FitterNodeTypes(nodeTypes, context.target as GraphElement);
+        }
 
-
-
-        protected abstract void FitterNodeTypes(List<Type> result);
+        protected virtual void AfterCreateNode(GraphElement element) { }
+        protected abstract void FitterNodeTypes(List<Type> result,GraphElement element);
         List<SearchTreeEntry> ISearchWindowProvider.CreateSearchTree(SearchWindowContext context)
         {
             var tree = new List<SearchTreeEntry>
             {
-                new SearchTreeGroupEntry(new GUIContent("Create Node"), 0),
-                new SearchTreeEntry(new GUIContent("Group"))
-                {
-                    level = 1,
-                    userData=typeof(GroupData)
-                },
-
+                new SearchTreeGroupEntry(new GUIContent("Nodes"), 0),
             };
-            var nodeTypes = GraphEditorTool.NodeTypes;
-            FitterNodeTypes(nodeTypes);
+
             for (int i = 0; i < nodeTypes.Count; i++)
             {
                 var type = nodeTypes[i];
@@ -175,6 +180,12 @@ namespace NodeGraph
 
                 }
             }
+
+            tree.Add(new SearchTreeEntry(new GUIContent("Group"))
+            {
+                level = 1,
+                userData = typeof(GroupData)
+            });
             return tree;
         }
 
@@ -187,32 +198,33 @@ namespace NodeGraph
                 context.screenMousePosition - position.position);
             var graphMousePosition = _view.contentViewContainer.WorldToLocal(mousePosition);
 
+            GraphElement element;
             Type type = (Type)SearchTreeEntry.userData;
             if (type == typeof(GroupData))
             {
-                var node = GraphEditorTool.CreateGroup(_view, null);
-                node.SetPosition(new Rect(graphMousePosition, node.GetPosition().size));
+                element = GraphEditorTool.CreateGroup(_view, null);
+                element.SetPosition(new Rect(graphMousePosition, element.GetPosition().size));
             }
             else
             {
-                var node = GraphEditorTool.CreateNode((Type)SearchTreeEntry.userData, _view, null);
-                node.SetPosition(new Rect(graphMousePosition, node.GetPosition().size));
+                element = GraphEditorTool.CreateNode((Type)SearchTreeEntry.userData, _view, null);
+                element.SetPosition(new Rect(graphMousePosition, element.GetPosition().size));
             }
-
+            AfterCreateNode(element);
 
 
             return true;
         }
-        void IGraphWindow.SelectNode(BaseNode node)
+        void IGraphWindow.SelectNode(GraphNode node)
         {
             OnSelectNode(node);
         }
 
-        bool IGraphWindow.CheckCouldLink(BasePort start, BasePort end)
+        bool IGraphWindow.CheckCouldLink(GraphPort start, GraphPort end)
         {
-            return OnCheckCouldLink(start.node as BaseNode, end.node as BaseNode, start, end);
+            return OnCheckCouldLink(start.node as GraphNode, end.node as GraphNode, start, end);
         }
-        protected abstract bool OnCheckCouldLink(BaseNode startNode, BaseNode endNode, BasePort start, BasePort end);
-        protected abstract void OnSelectNode(BaseNode node);
+        protected abstract bool OnCheckCouldLink(GraphNode startNode, GraphNode endNode, GraphPort start, GraphPort end);
+        protected abstract void OnSelectNode(GraphNode node);
     }
 }

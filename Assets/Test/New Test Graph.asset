@@ -12,86 +12,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52cd2b4915c61a478f2aa86218e02f8, type: 3}
   m_Name: New Test Graph
   m_EditorClassIdentifier: 
-  position: {x: -114, y: 581, z: 0}
-  scale: {x: 0.57175326, y: 0.57175326, z: 1}
+  position: {x: 31, y: 961, z: 0}
+  scale: {x: 0.25, y: 0.25, z: 1}
   connections:
-  - OutNodeGUID: c6eb24fb-7251-4731-8b35-1b1938d2a0c3
-    OutputPortName: Output
-    InNodeGUID: 9c2a6fe4-4d51-4261-8833-f59a5f2ada57
+  - outNodeGuid: 39576141-a486-47a7-a694-0ea4c6f6bc20
+    InNodeGuid: 582fbf35-75e8-4608-b5bb-9b0edd8ef51b
+    outPortType: System.String
+    inPortType: System.String
+    outputPortName: Output
     InPortName: Input
-  - OutNodeGUID: 9c2a6fe4-4d51-4261-8833-f59a5f2ada57
-    OutputPortName: Output
-    InNodeGUID: 709094e2-1f0f-4d72-9342-8c02c1b106ba
-    InPortName: Input
-  - OutNodeGUID: 0a81e166-161e-42f8-8eb1-4f97a4693ec4
-    OutputPortName: Output
-    InNodeGUID: c6eb24fb-7251-4731-8b35-1b1938d2a0c3
+  - outNodeGuid: a937a548-bd70-4309-b8d8-39d47dace826
+    InNodeGuid: b8c40e3e-bb6f-4ac0-99ac-4522f8ed7726
+    outPortType: System.Int32
+    inPortType: System.Int32
+    outputPortName: Output
     InPortName: Input
   groups:
   - position:
       serializedVersion: 2
-      x: 200
-      y: 200
-      width: 0
-      height: 0
-    GUID: 20a43406-266f-4603-a10e-7618651c5534
+      x: 1637
+      y: -3361
+      width: 514
+      height: 202
+    guid: b838ce57-3eb0-4e7c-97d4-b6fd42ce5b14
     title: GroupData
-    color: {r: 1, g: 1, b: 1, a: 1}
+    color: {r: 0.25451612, g: 1, b: 0, a: 1}
     nodes:
-    - 7104ebc2-b210-4af5-a39e-62fc3c40d995
-    - 709094e2-1f0f-4d72-9342-8c02c1b106ba
-    - c6eb24fb-7251-4731-8b35-1b1938d2a0c3
-    - 9c2a6fe4-4d51-4261-8833-f59a5f2ada57
-    - 0a81e166-161e-42f8-8eb1-4f97a4693ec4
-  _npcNodeDatas: []
+    - 39576141-a486-47a7-a694-0ea4c6f6bc20
+    - 582fbf35-75e8-4608-b5bb-9b0edd8ef51b
+  - position:
+      serializedVersion: 2
+      x: 1637
+      y: -3134
+      width: 499
+      height: 202
+    guid: d6598652-e4b7-4b2d-9a58-80d43c9f17d4
+    title: Group
+    color: {r: 0.9622642, g: 0.14070843, b: 0.14070843, a: 1}
+    nodes:
+    - a937a548-bd70-4309-b8d8-39d47dace826
+    - b8c40e3e-bb6f-4ac0-99ac-4522f8ed7726
+  _npcNodeDatas:
+  - position:
+      serializedVersion: 2
+      x: 1665
+      y: -3282
+      width: 231
+      height: 98
+    guid: 39576141-a486-47a7-a694-0ea4c6f6bc20
+    title: NpcNodeData
+    NpcName: dasdasdas
+  - position:
+      serializedVersion: 2
+      x: 1952
+      y: -3282
+      width: 174
+      height: 98
+    guid: 582fbf35-75e8-4608-b5bb-9b0edd8ef51b
+    title: NpcNodeData
+    NpcName: 
   _my:
   - position:
       serializedVersion: 2
-      x: 635
-      y: -642
+      x: 1665
+      y: -3055
       width: 179
-      height: 119
-    GUID: 7104ebc2-b210-4af5-a39e-62fc3c40d995
+      height: 98
+    guid: a937a548-bd70-4309-b8d8-39d47dace826
     title: MyData
-    NpcName: 
     NpcLevel: 0
   - position:
       serializedVersion: 2
-      x: 1277
-      y: -761
+      x: 1932
+      y: -3055
       width: 179
-      height: 119
-    GUID: 709094e2-1f0f-4d72-9342-8c02c1b106ba
+      height: 98
+    guid: b8c40e3e-bb6f-4ac0-99ac-4522f8ed7726
     title: MyData
-    NpcName: 
-    NpcLevel: 0
-  - position:
-      serializedVersion: 2
-      x: 901
-      y: -642
-      width: 179
-      height: 119
-    GUID: c6eb24fb-7251-4731-8b35-1b1938d2a0c3
-    title: MyData
-    NpcName: 
-    NpcLevel: 0
-  - position:
-      serializedVersion: 2
-      x: 1080
-      y: -815
-      width: 179
-      height: 119
-    GUID: 9c2a6fe4-4d51-4261-8833-f59a5f2ada57
-    title: MyData
-    NpcName: 
-    NpcLevel: 0
-  - position:
-      serializedVersion: 2
-      x: 801
-      y: -815
-      width: 179
-      height: 119
-    GUID: 0a81e166-161e-42f8-8eb1-4f97a4693ec4
-    title: MyData
-    NpcName: 
     NpcLevel: 0

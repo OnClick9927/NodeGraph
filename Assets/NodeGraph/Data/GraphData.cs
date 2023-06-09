@@ -3,21 +3,21 @@ using System;
 
 namespace NodeGraph
 {
-    public class BaseNodeData
+    public class GraphData
     {
         public Rect position;
-        public string GUID;
+        public string guid;
         public string title;
-        public BaseNodeData()
+        public GraphData()
         {
             position = Rect.zero;
             title = GetType().Name;
-            GUID = Guid.NewGuid().ToString();
+            guid = Guid.NewGuid().ToString();
         }
-        public virtual BaseNodeData DeepCopy()
+        public virtual GraphData DeepCopy()
         {
             var type = this.GetType();
-            BaseNodeData result = Activator.CreateInstance(type) as BaseNodeData;
+            GraphData result = Activator.CreateInstance(type) as GraphData;
             foreach (var field in type.GetFields())
             {
                 field.SetValue(result, field.GetValue(this));

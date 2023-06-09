@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace NodeGraph
 {
-    public class BasePort : Port
+    public class GraphPort : Port
     {
         private class DefaultEdgeConnectorListener : IEdgeConnectorListener
         {
@@ -25,6 +25,9 @@ namespace NodeGraph
 
             public void OnDropOutsidePort(Edge edge, Vector2 position)
             {
+                GraphConnection con = edge as GraphConnection;
+                GraphPort port = con.output != null ? con.output : con.input;
+                port.node.view.OpenSearchPop(port, Vector2.zero);
             }
 
             public void OnDrop(GraphView graphView, Edge edge)
@@ -73,24 +76,28 @@ namespace NodeGraph
                 }
             }
         }
-
-        public NodeGraphView view { get { return this.m_GraphView as NodeGraphView; } }
-        public new BaseNode node { get { return base.node as BaseNode; } }
-        protected BasePort(Orientation portOrientation, Direction portDirection, Capacity portCapacity, Type type) : base(portOrientation, portDirection, portCapacity, type)
+        private IEdgeConnectorListener listener;
+        public new GraphNode node { get { return base.node as GraphNode; } }
+        protected GraphPort(Orientation portOrientation, Direction portDirection, Capacity portCapacity, Type type) : base(portOrientation, portDirection, portCapacity, type)
         {
         }
 
         public static Port Create(Orientation orientation, Direction direction, Capacity capacity, Type type)
         {
             DefaultEdgeConnectorListener listener = new DefaultEdgeConnectorListener();
-            BasePort port = new BasePort(orientation, direction, capacity, type)
+            GraphPort port = new GraphPort(orientation, direction, capacity, type)
             {
-                m_EdgeConnector = new EdgeConnector<BaseConnection>(listener)
+                m_EdgeConnector = new EdgeConnector<GraphConnection>(listener),
+                listener = listener,
             };
             port.AddManipulator(port.m_EdgeConnector);
             return port;
         }
 
+        public static void ValidConnection(GraphView view, GraphConnection connection)
+        {
+            connection.input.listener.OnDrop(view, connection);
+        }
 
     }
 }
