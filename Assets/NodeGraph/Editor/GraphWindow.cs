@@ -16,8 +16,8 @@ namespace NodeGraph
             var obj = EditorUtility.InstanceIDToObject(instanceID);
             if (obj is GraphObject)
             {
-                GetWindow<GraphWindow>();
                 path = AssetDatabase.GetAssetPath(obj);
+                GetWindow<GraphWindow>();
             }
             return obj is GraphObject; // we did not handle the open
         }
@@ -43,9 +43,11 @@ namespace NodeGraph
 
         private void OnEnable()
         {
-            if (!string.IsNullOrEmpty(path))
+            if (!string.IsNullOrEmpty(path) && string.IsNullOrEmpty(_path))
                 _path = path;
             _data = AssetDatabase.LoadAssetAtPath<GraphObject>(_path);
+            if (_data == null) return;
+
             view = CreateView();
             view.Load(_data);
         }
@@ -53,6 +55,7 @@ namespace NodeGraph
 
         private void OnDisable()
         {
+            if (_data == null) return;
             view.Save();
             _path = AssetDatabase.GetAssetPath(_data);
             view = null;
