@@ -6,37 +6,31 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-public class TestWindow : GraphWindow<TestGraph>
+public class TestWindow : NodeGraphView<TestGraph>
 {
-    protected override void AfterLoadGraph()
+    public TestWindow(GraphWindow window) : base(window)
     {
-        view.selection.ConvertAll(x => x as GraphNode);
+    }
+    public override void Load(GraphObject data)
+    {
+        base.Load(data);
+        titleContent = new UnityEngine.GUIContent("Test");
+        this.selection.ConvertAll(x => x as GraphNode);
         Blackboard blackboard = new Blackboard()
         {
             windowed = false,
-
         };
         rootVisualElement.Add(blackboard);
 
         var _toolBar = new Toolbar();
         _toolBar.Add(new Button(() =>
         {
-            SaveGraph();
+            Save();
         })
         { text = "Save Data" });
         rootVisualElement.Add(_toolBar);
-
     }
 
-    GraphPort port;
-    protected override void FitterNodeTypes(List<Type> result, GraphElement element)
-    {
-        if (element is GraphPort port)
-        {
-            this.port = port;
-            result.RemoveAll(x => port.node.GetType() != x);
-        }
-    }
     protected override void AfterCreateNode(GraphElement element)
     {
         if (port == null) return;
@@ -44,15 +38,23 @@ public class TestWindow : GraphWindow<TestGraph>
         {
             if (port.direction == Direction.Input)
             {
-                GraphEditorTool.ConnectPort(view, port,
-                    (element as GraphNode).ports.First(x => x.direction == Direction.Output));
+                ConnectPort(port, (element as GraphNode).ports.First(x => x.direction == Direction.Output));
             }
             else
             {
-                GraphEditorTool.ConnectPort(view, port,
-                   (element as GraphNode).ports.First(x => x.direction == Direction.Input));
+                ConnectPort(port, (element as GraphNode).ports.First(x => x.direction == Direction.Input));
             }
         }
+    }
+    GraphPort port;
+    protected override List<Type> FitterNodeTypes(List<Type> src, GraphElement element)
+    {
+        if (element is GraphPort port)
+        {
+            this.port = port;
+            src.RemoveAll(x => port.node.GetType() != x);
+        }
+        return src;
     }
 
     protected override bool OnCheckCouldLink(GraphNode startNode, GraphNode endNode, GraphPort start, GraphPort end)
@@ -60,7 +62,7 @@ public class TestWindow : GraphWindow<TestGraph>
         return start.portType == end.portType;
     }
 
-    protected override void OnSelectNode(GraphNode node)
+    protected override void OnSelectNode(GraphNode obj)
     {
 
     }
