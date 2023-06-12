@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52cd2b4915c61a478f2aa86218e02f8, type: 3}
   m_Name: New Test Graph
   m_EditorClassIdentifier: 
-  position: {x: -709, y: 2130, z: 0}
+  position: {x: -861, y: 2186, z: 0}
   scale: {x: 0.57175326, y: 0.57175326, z: 1}
   connections:
   - outNodeGuid: 9cc474fc-7a93-4ba5-9ba3-065c54bff529
@@ -31,15 +31,15 @@ MonoBehaviour:
   - position:
       serializedVersion: 2
       x: 1823
-      y: -3452
+      y: -3452.0005
       width: 327
       height: 302
     guid: 906a8f34-203f-4906-a31f-44a01073efdc
     title: Group
     color: {r: 0.32871437, g: 1, b: 0, a: 1}
     nodes:
-    - f555daa9-2ba5-43fd-b34d-3954f1d0477a
     - a6396b3e-c70f-4b42-a9b7-1d6f99c4fa3a
+    - f555daa9-2ba5-43fd-b34d-3954f1d0477a
   - position:
       serializedVersion: 2
       x: 2212
@@ -50,9 +50,18 @@ MonoBehaviour:
     title: Group
     color: {r: 1, g: 0, b: 0, a: 1}
     nodes:
-    - cd5324f5-152c-436c-8a59-551a332a5c76
     - 9cc474fc-7a93-4ba5-9ba3-065c54bff529
+    - cd5324f5-152c-436c-8a59-551a332a5c76
   _npcNodeDatas:
+  - position:
+      serializedVersion: 2
+      x: 1951
+      y: -3273
+      width: 174
+      height: 98
+    guid: a6396b3e-c70f-4b42-a9b7-1d6f99c4fa3a
+    title: NpcNodeData
+    NpcName: 
   - position:
       serializedVersion: 2
       x: 1851
@@ -64,23 +73,14 @@ MonoBehaviour:
     NpcName: 
   - position:
       serializedVersion: 2
-      x: 1951
-      y: -3273
+      x: 2870
+      y: -3351
       width: 174
       height: 98
-    guid: a6396b3e-c70f-4b42-a9b7-1d6f99c4fa3a
+    guid: ace72bdc-98b4-4f05-8b8b-e84d134a42c5
     title: NpcNodeData
     NpcName: 
   _my:
-  - position:
-      serializedVersion: 2
-      x: 2473
-      y: -3289
-      width: 179
-      height: 98
-    guid: cd5324f5-152c-436c-8a59-551a332a5c76
-    title: MyData
-    NpcLevel: 0
   - position:
       serializedVersion: 2
       x: 2240
@@ -88,5 +88,14 @@ MonoBehaviour:
       width: 179
       height: 98
     guid: 9cc474fc-7a93-4ba5-9ba3-065c54bff529
+    title: MyData
+    NpcLevel: 0
+  - position:
+      serializedVersion: 2
+      x: 2473
+      y: -3289
+      width: 179
+      height: 98
+    guid: cd5324f5-152c-436c-8a59-551a332a5c76
     title: MyData
     NpcLevel: 0

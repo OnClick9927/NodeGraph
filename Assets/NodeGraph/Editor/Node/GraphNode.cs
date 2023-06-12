@@ -111,7 +111,7 @@ namespace NodeGraph
 
         private DropdownMenuAction.Status DeleteStatus(DropdownMenuAction arg)
         {
-            return DropdownMenuAction.Status.Normal;
+            return (capabilities & Capabilities.Deletable) == 0 ? DropdownMenuAction.Status.Disabled : DropdownMenuAction.Status.Normal;
         }
 
         private DropdownMenuAction.Status RemoveFromGroupStatus(DropdownMenuAction arg)
