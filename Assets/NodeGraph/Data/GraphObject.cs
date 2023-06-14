@@ -14,7 +14,6 @@ namespace NodeGraph
         public List<ConnectionData> connections = new List<ConnectionData>();
         public List<GroupData> groups = new List<GroupData>();
 
-        [SerializeField] private List<GraphData> graphs = new List<GraphData>();
         public void SaveNodes(List<GraphData> datas)
         {
             var fields = GetFileds();
@@ -34,10 +33,7 @@ namespace NodeGraph
                 if (!find)
                     throw new Exception($"Node List For Data Type : {data.GetType()} is not defined");
             }
-            foreach (GraphData data in datas)
-            {
-                graphs.Add(data);
-            }
+
         }
         public virtual List<GraphData> GetNodes()
         {
@@ -56,7 +52,6 @@ namespace NodeGraph
         }
         public void Clear()
         {
-            graphs.Clear();
             var fields = GetFileds();
             foreach (var item in fields)
             {

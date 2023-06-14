@@ -38,18 +38,18 @@ MonoBehaviour:
       serializedVersion: 2
       x: 2232.9998
       y: -3874.0005
-      width: 297
-      height: 318
+      width: 401
+      height: 418
     guid: 906a8f34-203f-4906-a31f-44a01073efdc
     title: Group
     color: {r: 0.32871437, g: 1, b: 0, a: 1}
     nodes:
-    - a6396b3e-c70f-4b42-a9b7-1d6f99c4fa3a
     - f555daa9-2ba5-43fd-b34d-3954f1d0477a
+    - a6396b3e-c70f-4b42-a9b7-1d6f99c4fa3a
   - position:
       serializedVersion: 2
       x: 2619.9998
-      y: -3756.0005
+      y: -3756
       width: 465
       height: 300
     guid: 870d4177-22f1-4e4e-a448-7a6b05584bd4
@@ -69,11 +69,43 @@ MonoBehaviour:
     title: NpcNodeData
   - position:
       serializedVersion: 2
-      x: 2331
-      y: -3679
+      x: 2261
+      y: -3795
+      width: 174
+      height: 98
+    guid: f555daa9-2ba5-43fd-b34d-3954f1d0477a
+    title: NpcNodeData
+  - position:
+      serializedVersion: 2
+      x: 2881
+      y: -3579
+      width: 179
+      height: 98
+    guid: cd5324f5-152c-436c-8a59-551a332a5c76
+    title: MyData
+  - position:
+      serializedVersion: 2
+      x: 2648
+      y: -3677
+      width: 179
+      height: 98
+    guid: 9cc474fc-7a93-4ba5-9ba3-065c54bff529
+    title: MyData
+  - position:
+      serializedVersion: 2
+      x: 2435
+      y: -3579
       width: 174
       height: 98
     guid: a6396b3e-c70f-4b42-a9b7-1d6f99c4fa3a
+    title: NpcNodeData
+  - position:
+      serializedVersion: 2
+      x: 2870
+      y: -3351
+      width: 174
+      height: 98
+    guid: ace72bdc-98b4-4f05-8b8b-e84d134a42c5
     title: NpcNodeData
   - position:
       serializedVersion: 2
@@ -82,6 +114,14 @@ MonoBehaviour:
       width: 174
       height: 98
     guid: f555daa9-2ba5-43fd-b34d-3954f1d0477a
+    title: NpcNodeData
+  - position:
+      serializedVersion: 2
+      x: 2435
+      y: -3579
+      width: 174
+      height: 98
+    guid: a6396b3e-c70f-4b42-a9b7-1d6f99c4fa3a
     title: NpcNodeData
   - position:
       serializedVersion: 2
@@ -111,20 +151,20 @@ MonoBehaviour:
     NpcName: 
   - position:
       serializedVersion: 2
-      x: 2331
-      y: -3679
-      width: 174
-      height: 98
-    guid: a6396b3e-c70f-4b42-a9b7-1d6f99c4fa3a
-    title: NpcNodeData
-    NpcName: 
-  - position:
-      serializedVersion: 2
       x: 2261
       y: -3795
       width: 174
       height: 98
     guid: f555daa9-2ba5-43fd-b34d-3954f1d0477a
+    title: NpcNodeData
+    NpcName: 
+  - position:
+      serializedVersion: 2
+      x: 2435
+      y: -3579
+      width: 174
+      height: 98
+    guid: a6396b3e-c70f-4b42-a9b7-1d6f99c4fa3a
     title: NpcNodeData
     NpcName: 
   _my:
