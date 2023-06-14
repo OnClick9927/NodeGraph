@@ -3,6 +3,7 @@ using System;
 
 namespace NodeGraph
 {
+    [System.Serializable]
     public class GraphData
     {
         public Rect position;

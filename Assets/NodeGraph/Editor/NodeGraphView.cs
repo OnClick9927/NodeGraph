@@ -120,14 +120,7 @@ namespace NodeGraph
 
         }
 
-        private static List<FieldInfo> GetFileds(GraphObject graph)
-        {
-            var types = graph.GetType().GetFields().ToList();
-            var find = types.FindAll(x => x.FieldType.IsGenericType &&
-                x.FieldType.GetGenericTypeDefinition() == typeof(List<>))
-                .ToList();
-            return find;
-        }
+
         private static GraphData Node2Data(GraphNode node)
         {
             var nodeType = node.GetType();
@@ -366,30 +359,9 @@ namespace NodeGraph
         {
             graph.position = this.viewTransform.position;
             graph.scale = this.viewTransform.scale;
-            var fields = GetFileds(graph);
-            foreach (var item in fields)
-            {
-                var list = item.GetValue(graph);
-                list.GetType().GetMethod("Clear").Invoke(list, null);
-            }
+            graph.Clear();
             //±£´ænode
-            foreach (GraphNode node in this.nodes)
-            {
-                GraphData data = Node2Data(node);
-                bool find = false;
-                foreach (var _field in fields)
-                {
-                    if (_field.FieldType.GetGenericArguments()[0] == data.GetType())
-                    {
-                        var list = _field.GetValue(graph);
-                        list.GetType().GetMethod("Add").Invoke(list, new object[] { data });
-                        find = true;
-                        break;
-                    }
-                }
-                if (!find)
-                    throw new Exception($"Node List For Data Type : {data.GetType()} is not defined");
-            }
+            graph.SaveNodes(this.nodes.ConvertAll(x => Node2Data(x)));
             foreach (var connectedPort in this.connections.Where(x => x.input.node != null))
                 graph.connections.Add(Connection2Data(connectedPort));
             foreach (var group in this.groups)
@@ -403,18 +375,7 @@ namespace NodeGraph
             this.graph = data;
             this.viewTransform.position = graph.position;
             this.viewTransform.scale = graph.scale;
-            List<GraphData> nodeDatas = new List<GraphData>();
-            var fields = GetFileds(graph);
-            foreach (var item in fields)
-            {
-                var innerType = item.FieldType.GetGenericArguments()[0];
-                if (innerType.IsSubclassOf(typeof(GraphData)) && innerType != typeof(GroupData))
-                {
-                    var list = item.GetValue(graph) as IEnumerable<GraphData>;
-                    nodeDatas.AddRange(list);
-                }
-            }
-            CreateElements(new List<GraphElement>(), nodeDatas, graph.groups, graph.connections);
+            CreateElements(new List<GraphElement>(), graph.GetNodes(), graph.groups, graph.connections);
             this.RegisterCallback<KeyDownEvent>(KeyDownCallback);
 
         }
@@ -466,7 +427,7 @@ namespace NodeGraph
         protected abstract void OnSelectNode(GraphNode obj);
         protected abstract void AfterCreateNode(GraphElement element);
         protected abstract List<Type> FitterNodeTypes(List<Type> src, GraphElement element);
-   
+
 
     }
 }

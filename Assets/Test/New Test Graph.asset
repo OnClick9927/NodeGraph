@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52cd2b4915c61a478f2aa86218e02f8, type: 3}
   m_Name: New Test Graph
   m_EditorClassIdentifier: 
-  position: {x: -861, y: 2316, z: 0}
-  scale: {x: 0.57175326, y: 0.57175326, z: 1}
+  position: {x: -737, y: 2033, z: 0}
+  scale: {x: 0.49717674, y: 0.49717674, z: 1}
   connections:
   - outNodeGuid: 9cc474fc-7a93-4ba5-9ba3-065c54bff529
     InNodeGuid: cd5324f5-152c-436c-8a59-551a332a5c76
@@ -30,7 +30,7 @@ MonoBehaviour:
   groups:
   - position:
       serializedVersion: 2
-      x: 2233
+      x: 2232.9998
       y: -3874
       width: 297
       height: 318
@@ -42,7 +42,7 @@ MonoBehaviour:
     - f555daa9-2ba5-43fd-b34d-3954f1d0477a
   - position:
       serializedVersion: 2
-      x: 2620
+      x: 2619.9998
       y: -3756
       width: 465
       height: 300
@@ -50,8 +50,49 @@ MonoBehaviour:
     title: Group
     color: {r: 1, g: 0, b: 0, a: 1}
     nodes:
-    - 9cc474fc-7a93-4ba5-9ba3-065c54bff529
     - cd5324f5-152c-436c-8a59-551a332a5c76
+    - 9cc474fc-7a93-4ba5-9ba3-065c54bff529
+  graphs:
+  - position:
+      serializedVersion: 2
+      x: 2870
+      y: -3351
+      width: 174
+      height: 98
+    guid: ace72bdc-98b4-4f05-8b8b-e84d134a42c5
+    title: NpcNodeData
+  - position:
+      serializedVersion: 2
+      x: 2331
+      y: -3679
+      width: 174
+      height: 98
+    guid: a6396b3e-c70f-4b42-a9b7-1d6f99c4fa3a
+    title: NpcNodeData
+  - position:
+      serializedVersion: 2
+      x: 2261
+      y: -3795
+      width: 174
+      height: 98
+    guid: f555daa9-2ba5-43fd-b34d-3954f1d0477a
+    title: NpcNodeData
+  - position:
+      serializedVersion: 2
+      x: 2881
+      y: -3579
+      width: 179
+      height: 98
+    guid: cd5324f5-152c-436c-8a59-551a332a5c76
+    title: MyData
+  - position:
+      serializedVersion: 2
+      x: 2648
+      y: -3677
+      width: 179
+      height: 98
+    guid: 9cc474fc-7a93-4ba5-9ba3-065c54bff529
+    title: MyData
   _npcNodeDatas:
   - position:
       serializedVersion: 2
@@ -83,19 +124,19 @@ MonoBehaviour:
   _my:
   - position:
       serializedVersion: 2
-      x: 2648
-      y: -3677
-      width: 179
-      height: 98
-    guid: 9cc474fc-7a93-4ba5-9ba3-065c54bff529
-    title: MyData
-    NpcLevel: 0
-  - position:
-      serializedVersion: 2
       x: 2881
       y: -3579
       width: 179
       height: 98
     guid: cd5324f5-152c-436c-8a59-551a332a5c76
+    title: MyData
+    NpcLevel: 0
+  - position:
+      serializedVersion: 2
+      x: 2648
+      y: -3677
+      width: 179
+      height: 98
+    guid: 9cc474fc-7a93-4ba5-9ba3-065c54bff529
     title: MyData
     NpcLevel: 0
