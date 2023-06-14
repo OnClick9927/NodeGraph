@@ -27,11 +27,17 @@ MonoBehaviour:
     inPortType: System.String
     outputPortName: Output
     InPortName: Input
+  - outNodeGuid: a6396b3e-c70f-4b42-a9b7-1d6f99c4fa3a
+    InNodeGuid: f555daa9-2ba5-43fd-b34d-3954f1d0477a
+    outPortType: System.String
+    inPortType: System.String
+    outputPortName: Output
+    InPortName: Input
   groups:
   - position:
       serializedVersion: 2
       x: 2232.9998
-      y: -3874
+      y: -3874.0005
       width: 297
       height: 318
     guid: 906a8f34-203f-4906-a31f-44a01073efdc
@@ -43,7 +49,7 @@ MonoBehaviour:
   - position:
       serializedVersion: 2
       x: 2619.9998
-      y: -3756
+      y: -3756.0005
       width: 465
       height: 300
     guid: 870d4177-22f1-4e4e-a448-7a6b05584bd4
