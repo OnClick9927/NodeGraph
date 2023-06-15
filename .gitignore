@@ -3,3 +3,4 @@ obj/
 Logs/
 Temp/
 *.csproj
+.vs/

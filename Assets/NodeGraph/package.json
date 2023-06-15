@@ -1,0 +1,15 @@
+{
+  "name": "com.woo.nodegraph",
+  "displayName": "NodeGraph",
+  "version": "1.0.0",
+  "unity": "2019.4",
+  "description": "NodeGraph",
+  "type": "library"
+  //"samples": [
+  //  {
+  //    "displayName": "Joystick Examples",
+  //    "description": "提供多个测试用例",
+  //    "path": "Samples~/Example"
+  //  }
+  //]
+}
